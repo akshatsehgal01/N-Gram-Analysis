@@ -48,18 +48,24 @@ public class WordCountByLength {
 			String textFileString = value.toString().trim();
 
 			/*
-			 * split the text file string in a string array usingspace(\\s+) as
-			 * delimiter
+			 * Split the text file string in a string array using any special
+			 * character as delimiter. This is because words might be separated
+			 * by a character other than space. For example - 'Tuesday,' ;
+			 * 'Tuesday.' ; 'Tuesday' should be treated as Tuesday and not as
+			 * three separate words.
+			 * Regex for above logic - "\\W+"
 			 */
-			String[] wordArray = textFileString.split("\\s+");
+			String[] wordArray = textFileString.split("\\W+");
 
 			/*
 			 * iterate through word array and use length of each word as key
 			 */
 			for (int i = 0; i < wordArray.length; i++) {
+				if(wordArray[i].length()!=0){
 				wordLength.set(Integer.toString(wordArray[i].length())
 						+ tempStr);
 				context.write(wordLength, one);
+				}
 			}
 		}
 	}

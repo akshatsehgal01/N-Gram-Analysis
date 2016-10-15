@@ -1,0 +1,18 @@
+bin/start-dfs.sh
+
+sbin/stop-dfs.sh
+
+hadoop fs -mkdir Assignment1
+
+hadoop fs -put /home/hadoop/Desktop/Assignment1/ocr.txt Assignment1
+
+hadoop fs -cat /Assignment1/ocr.txt
+
+hadoop fs -ls Assignment1
+
+hadoop jar /home/hadoop/Desktop/Assignment1/WordCount.jar WordCount Assignment1/ocr.txt output
+
+hadoop fs -get Assignment1/output home/Desktop/Assignment1/output
+
+ 
+
